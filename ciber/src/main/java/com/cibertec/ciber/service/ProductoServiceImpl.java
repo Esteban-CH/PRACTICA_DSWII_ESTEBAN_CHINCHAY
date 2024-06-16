@@ -1,6 +1,7 @@
 package com.cibertec.ciber.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,21 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public List<Producto> listarTodosProductos() {
         return repository.findAll();
+    }
+
+    @Override
+    public Optional<Producto> buscarProductoPorId(int id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public Producto agregarActualizarProducto(Producto producto) {
+        return repository.save(producto);
+    }
+
+    @Override
+    public void eliminarProducto(int id) {
+        repository.deleteById(id);
     }
 
 }
